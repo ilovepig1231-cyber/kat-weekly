@@ -725,6 +725,104 @@
       background-size: 15px 15px;
     }
 
+    /* 浮动emoji背景 */
+    .floating-emoji {
+      position: fixed;
+      pointer-events: none;
+      font-size: 2rem;
+      opacity: 0;
+      z-index: 0;
+      animation: float-up 8s ease-in-out forwards;
+    }
+
+    @keyframes float-up {
+      0% { opacity: 0; transform: translateY(100vh) rotate(0deg) scale(0.5); }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.3; }
+      100% { opacity: 0; transform: translateY(-100px) rotate(360deg) scale(1); }
+    }
+
+    /* 彩虹页脚点 */
+    .footer-dots.rainbow span {
+      animation: rainbow-dot 1.5s ease forwards;
+    }
+
+    @keyframes rainbow-dot {
+      0% { background: #ff6b6b; }
+      16% { background: #feca57; }
+      33% { background: #48dbfb; }
+      50% { background: #ff9ff3; }
+      66% { background: #54a0ff; }
+      83% { background: #5f27cd; }
+      100% { background: var(--accent); }
+    }
+
+    /* 鼓励toast */
+    .encourage-toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: linear-gradient(135deg, var(--lavender), var(--peach));
+      padding: 20px 30px;
+      border-radius: 20px;
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      box-shadow: 0 10px 40px rgba(212, 165, 165, 0.3);
+      z-index: 200;
+      transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .encourage-toast.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Konami撒花 */
+    .konami-firework {
+      position: fixed;
+      pointer-events: none;
+      font-size: 2rem;
+      animation: konami-burst 1.5s ease-out forwards;
+      z-index: 300;
+    }
+
+    @keyframes konami-burst {
+      0% { opacity: 1; transform: translate(0, 0) scale(0); }
+      50% { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1.5); }
+      100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.5); }
+    }
+
+    /* 页面加载动画 */
+    .page-wrapper {
+      animation: fade-in-up 0.8s ease forwards;
+    }
+
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 进度条互动 */
+    .progress-bar {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .progress-bar:hover::after {
+      content: '继续加油！';
+      position: absolute;
+      top: -35px;
+      right: 0;
+      background: var(--sage);
+      color: var(--text-dark);
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+
     /* 回到顶部按钮 */
     .back-to-top {
       position: fixed;
@@ -1056,6 +1154,8 @@
     </footer>
   </div>
 
+  <div class="encourage-toast" id="encourageToast">加油加油！</div>
+
   <script>
     // 卡片翻转
     function flipCard(card) {
@@ -1065,6 +1165,102 @@
     // 咖啡/店铺详情展开
     function toggleCoffee(item) {
       item.classList.toggle('expanded');
+    }
+
+    // 浮动emoji背景
+    const floatEmojis = ['🌸', '✨', '🍃', '💫', '🌿', '⭐', '🌺', '💖'];
+    setInterval(() => {
+      const emoji = document.createElement('div');
+      emoji.className = 'floating-emoji';
+      emoji.textContent = floatEmojis[Math.floor(Math.random() * floatEmojis.length)];
+      emoji.style.left = Math.random() * 100 + '%';
+      emoji.style.animationDuration = (6 + Math.random() * 4) + 's';
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 10000);
+    }, 3000);
+
+    // 页脚彩虹效果
+    const footerDots = document.querySelector('.footer-dots');
+    footerDots.addEventListener('click', () => {
+      footerDots.classList.add('rainbow');
+      setTimeout(() => footerDots.classList.remove('rainbow'), 1500);
+    });
+
+    // 攀岩徽章点击
+    const encourageMessages = [
+      '你做得到！💪',
+      '今天的你比昨天更强！',
+      '5.11不是梦想！',
+      '继续攀爬吧！🧗',
+      '每一次尝试都算数！',
+      '你已经在路上了！'
+    ];
+
+    document.querySelectorAll('.climbing-badge').forEach(badge => {
+      badge.addEventListener('click', () => {
+        const toast = document.getElementById('encourageToast');
+        toast.textContent = encourageMessages[Math.floor(Math.random() * encourageMessages.length)];
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+      });
+    });
+
+    // 进度条点击
+    document.querySelectorAll('.progress-fill').forEach(bar => {
+      bar.addEventListener('click', () => {
+        const currentWidth = parseFloat(bar.style.width);
+        if (currentWidth < 95) {
+          bar.style.width = (currentWidth + 5) + '%';
+        }
+      });
+    });
+
+    // Konami代码彩蛋
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let konamiIndex = 0;
+    const konamiEmojis = ['🎉', '🎊', '✨', '🌟', '💫', '🎆', '🎇', '🍾', '🥂', '💖'];
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          // 触发全屏撒花！
+          for (let i = 0; i < 50; i++) {
+            const fw = document.createElement('div');
+            fw.className = 'konami-firework';
+            fw.textContent = konamiEmojis[Math.floor(Math.random() * konamiEmojis.length)];
+            fw.style.left = Math.random() * 100 + '%';
+            fw.style.top = Math.random() * 100 + '%';
+            fw.style.setProperty('--tx', (Math.random() - 0.5) * 200 + 'px');
+            fw.style.setProperty('--ty', (Math.random() - 0.5) * 200 + 'px');
+            fw.style.animationDelay = Math.random() * 0.5 + 's';
+            document.body.appendChild(fw);
+            setTimeout(() => fw.remove(), 2000);
+          }
+          // 显示庆祝消息
+          const toast = document.getElementById('encourageToast');
+          toast.textContent = '🎊 Konami代码触发！你发现了隐藏彩蛋！';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+          konamiIndex = 0;
+        }
+      } else {
+        konamiIndex = 0;
+      }
+    });
+
+    // 数字滚动动画
+    function animateValue(obj, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
     }
 
     // 周区块折叠
