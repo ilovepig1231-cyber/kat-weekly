@@ -811,7 +811,7 @@
     }
 
     .progress-bar:hover::after {
-      content: '(◕‿◕) 点我加点进度~';
+      content: '👉 点我加点进度~';
       position: absolute;
       top: -35px;
       right: 0;
@@ -995,7 +995,7 @@
             <span class="mood-emoji">🌸</span>
             <span>查看今日心情</span>
           </button>
-          <div class="mood-message" id="moodMsg">5.10a 我来了 (ง •̀_•́)ง</div>
+          <div class="mood-message" id="moodMsg">5.10a 我来了 💪</div>
         </div>
       </div>
     </section>
@@ -1134,7 +1134,7 @@
             <span class="mood-emoji">🍳</span>
             <span>查看今日心情</span>
           </button>
-          <div class="mood-message">5.9蓝线失败但不气馁 ◝(°ヮ°)◜</div>
+          <div class="mood-message">5.9蓝线失败但不气馁 😅</div>
         </div>
       </div>
     </section>
@@ -1154,7 +1154,7 @@
     </footer>
   </div>
 
-  <div class="encourage-toast" id="encourageToast">(◕‿◕) 准备好探索了吗~</div>
+  <div class="encourage-toast" id="encourageToast">👋 准备好探索了吗~</div>
 
   <script>
     // 卡片翻转
@@ -1188,12 +1188,12 @@
 
     // 攀岩徽章点击
     const encourageMessages = [
-      '(ง •̀_•́)ง 冲鸭！',
-      '٩(◕‿◕｡)۶ 5.11在等你',
-      '◝(°ヮ°)◜ 可以的可以的！',
-      '( ˘ ³˘)♥ 攀岩宝宝最棒！',
-      '✧*｡٩(ˊᗜˋ*)و✧*｡ 棒棒！',
-      '(๑•̀ㅂ•́)و✧ 没问题！'
+      '💪 冲鸭！',
+      '🧗 5.11在等你',
+      '✅ 可以的可以的！',
+      '❤️ 攀岩宝宝最棒！',
+      '✨ 棒棒！',
+      '🔥 没问题！'
     ];
 
     document.querySelectorAll('.climbing-badge').forEach(badge => {
@@ -1239,7 +1239,7 @@
           }
           // 显示庆祝消息
           const toast = document.getElementById('encourageToast');
-          toast.textContent = '🎊 (ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ 隐藏彩蛋get！';
+          toast.textContent = '🎊✨ 隐藏彩蛋get！';
           toast.classList.add('show');
           setTimeout(() => toast.classList.remove('show'), 3000);
           konamiIndex = 0;
@@ -1272,13 +1272,13 @@
 
     // 心情切换
     const moods = [
-      { emoji: '🌸', text: '5.10a 我来了 (ง •̀_•́)ง' },
-      { emoji: '🍳', text: '5.9蓝线失败但不气馁 ◝(°ヮ°)◜' },
-      { emoji: '🎃', text: '贝贝南瓜yyds！( ˘ ³˘)♥' },
-      { emoji: '☕', text: '想喝小羊抹茶 ٩(◕‿◕｡)۶' },
-      { emoji: '🧗', text: '今天比昨天更强 ✧*｡٩(ˊᗜˋ*)و✧*｡' },
-      { emoji: '🍦', text: '960g薄巧下肚，幸福 (๑＞ڡ＜)☆' },
-      { emoji: '🍜', text: '卤汤泡面是人间至味 (っ˘ڡ˘ς)' }
+      { emoji: '🌸', text: '5.10a 我来了 💪' },
+      { emoji: '🍳', text: '5.9蓝线失败但不气馁 😅' },
+      { emoji: '🎃', text: '贝贝南瓜yyds！❤️' },
+      { emoji: '☕', text: '想喝小羊抹茶 🤤' },
+      { emoji: '🧗', text: '今天比昨天更强 ✨' },
+      { emoji: '🍦', text: '960g薄巧下肚，幸福 😋' },
+      { emoji: '🍜', text: '卤汤泡面是人间至味 😋' }
     ];
 
     function changeMood(btn) {
