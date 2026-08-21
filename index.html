@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>下个礼拜你有空吗 ♡</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf8f3;
+      --blush: #f8e8e0;
+      --sage: #d4e4d1;
+      --lavender: #e8e0f0;
+      --peach: #fadcd2;
+      --soft-pink: #f5d5d5;
+      --mint: #e0f0e8;
+      --text-dark: #5a4a4a;
+      --text-light: #8b7e7e;
+      --accent: #d4a5a5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+      background-color: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.9;
+      overflow-x: hidden;
+    }
+
+    /* 波点背景装饰 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background-image: 
+        radial-gradient(circle, var(--soft-pink) 2px, transparent 2px),
+        radial-gradient(circle, var(--sage) 1.5px, transparent 1.5px),
+        radial-gradient(circle, var(--lavender) 2px, transparent 2px);
+      background-size: 80px 80px, 120px 120px, 100px 100px;
+      background-position: 0 0, 40px 60px, 70px 30px;
+      opacity: 0.4;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 180px;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 15px,
+        rgba(245, 213, 213, 0.2) 15px,
+        rgba(245, 213, 213, 0.2) 17px
+      );
+    }
+
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    /* 顶部装饰波点 */
+    .header-dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .header-dots span {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .header-dots span:nth-child(1) { background: var(--soft-pink); animation-delay: 0s; }
+    .header-dots span:nth-child(2) { background: var(--sage); animation-delay: 0.5s; }
+    .header-dots span:nth-child(3) { background: var(--lavender); animation-delay: 1s; }
+    .header-dots span:nth-child(4) { background: var(--peach); animation-delay: 1.5s; }
+    .header-dots span:nth-child(5) { background: var(--mint); animation-delay: 2s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* 标题区域 */
+    .main-title {
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 30px 0;
+      position: relative;
+    }
+
+    .main-title h1 {
+      font-family: 'Playfair Display', 'Noto Serif SC', serif;
+      font-size: 3.2rem;
+      font-weight: 400;
+      color: var(--text-dark);
+      letter-spacing: 3px;
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .main-title h1:hover {
+      color: var(--accent);
+      transform: scale(1.02);
+    }
+
+    .main-title h1::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--soft-pink), var(--accent));
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    .main-title h1:hover::before {
+      width: 100px;
+    }
+
+    .main-title .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-top: 20px;
+      letter-spacing: 2px;
+      font-style: italic;
+    }
+
+    /* 提示框 */
+    .hint-box {
+      background: linear-gradient(135deg, var(--blush), var(--peach));
+      border-radius: 20px;
+      padding: 18px 28px;
+      margin: 35px 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      border: 1px dashed var(--accent);
+      opacity: 0.85;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hint-box:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(212, 165, 165, 0.2);
+    }
+
+    .hint-box .extra-hint {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .hint-box.expanded .extra-hint {
+      max-height: 50px;
+      margin-top: 12px;
+    }
+
+    /* 时间区块 */
+    .week-section {
+      margin: 55px 0;
+      position: relative;
+    }
+
+    .week-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      cursor: pointer;
+    }
+
+    .week-badge {
+      background: linear-gradient(135deg, var(--sage), var(--mint));
+      color: var(--text-dark);
+      padding: 10px 22px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .week-badge:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(212, 228, 209, 0.4);
+    }
+
+    .week-divider {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--soft-pink), transparent);
+      border-radius: 1px;
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+      color: var(--text-light);
+    }
+
+    .week-section.collapsed .toggle-icon {
+      transform: rotate(-90deg);
+    }
+
+    .week-content {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(5px);
+      border-radius: 24px;
+      padding: 30px;
+      border: 1px solid rgba(245, 213, 213, 0.3);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s ease;
+      max-height: 2000px;
+      opacity: 1;
+    }
+
+    .week-section.collapsed .week-content {
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      opacity: 0;
+      margin-top: -20px;
+    }
+
+    /* 内容区的装饰条纹 */
+    .week-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--soft-pink) 0px,
+        var(--soft-pink) 20px,
+        var(--sage) 20px,
+        var(--sage) 40px,
+        var(--lavender) 40px,
+        var(--lavender) 60px,
+        var(--peach) 60px,
+        var(--peach) 80px
+      );
+      opacity: 0.6;
+    }
+
+    .week-content p {
+      margin: 12px 0;
+      color: var(--text-dark);
+      font-size: 1rem;
+    }
+
+    .week-content ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .week-content li {
+      position: relative;
+      padding-left: 24px;
+      margin: 10px 0;
+      color: var(--text-dark);
+    }
+
+    .week-content li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* 菜单卡片 - 可翻转 */
+    .menu-section {
+      margin: 25px 0;
+    }
+
+    .menu-title {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 15px;
+      padding-left: 10px;
+      border-left: 3px solid var(--soft-pink);
+      letter-spacing: 1px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    @media (max-width: 600px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+      .menu-card.full-width {
+        grid-column: span 1 !important;
+      }
+    }
+
+    .menu-card {
+      perspective: 1000px;
+      height: 140px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .menu-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s ease;
+      transform-style: preserve-3d;
+    }
+
+    .menu-card.flipped .menu-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .menu-card-front,
+    .menu-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 18px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .menu-card-front {
+      background: white;
+      border: 1px solid rgba(212, 165, 165, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .menu-card:hover .menu-card-front {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(212, 165, 165, 0.15);
+    }
+
+    .menu-card-back {
+      background: linear-gradient(135deg, var(--blush), var(--peach));
+      transform: rotateY(180deg);
+      border: 1px solid rgba(212, 165, 165, 0.2);
+    }
+
+    .menu-card-back .food-emoji {
+      font-size: 3.5rem;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
+    .menu-card-back .food-tip {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      line-height: 1.4;
+      padding: 0 4px;
+    }
+
+    .menu-card .food-name {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .menu-card .food-desc {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .click-hint {
+      font-size: 0.7rem;
+      color: var(--accent);
+      margin-top: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu-card:hover .click-hint {
+      opacity: 1;
+    }
+
+    /* 咖啡日记特殊样式 */
+    .coffee-section {
+      background: linear-gradient(135deg, rgba(224, 240, 232, 0.5), rgba(232, 224, 240, 0.5));
+      border-radius: 20px;
+      padding: 22px;
+      margin-top: 20px;
+      border: 1px solid rgba(212, 228, 209, 0.4);
+    }
+
+    .coffee-section h4 {
+      color: var(--text-dark);
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .coffee-item {
+      margin: 10px 0;
+      padding-left: 20px;
+      position: relative;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .coffee-item:hover {
+      transform: translateX(5px);
+      color: var(--accent);
+    }
+
+    .coffee-item::before {
+      content: '☕';
+      position: absolute;
+      left: 0;
+      top: 2px;
+      font-size: 0.8rem;
+    }
+
+    .coffee-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      padding-left: 20px;
+    }
+
+    .coffee-item.expanded + .coffee-detail {
+      max-height: 100px;
+      margin-top: 8px;
+    }
+
+    /* 攀岩进度条 */
+    .climbing-progress {
+      margin: 20px 0;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 16px;
+    }
+
+    .climbing-progress h4 {
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      color: var(--text-dark);
+    }
+
+    .progress-bar {
+      height: 12px;
+      background: rgba(212, 228, 209, 0.3);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--sage), var(--mint));
+      border-radius: 6px;
+      width: 0;
+      transition: width 1.5s ease;
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .climbing-badges {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .climbing-badge {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .climbing-badge.completed {
+      background: linear-gradient(135deg, var(--sage), var(--mint));
+      color: var(--text-dark);
+    }
+
+    .climbing-badge.current {
+      background: linear-gradient(135deg, var(--peach), var(--soft-pink));
+      color: var(--text-dark);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .climbing-badge.locked {
+      background: rgba(139, 126, 126, 0.15);
+      color: var(--text-light);
+    }
+
+    .climbing-badge:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245, 213, 213, 0.4); }
+      50% { box-shadow: 0 0 0 10px rgba(245, 213, 213, 0); }
+    }
+
+    /* 心情日记 - 点击切换 */
+    .mood-section {
+      margin: 25px 0;
+      text-align: center;
+    }
+
+    .mood-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, var(--lavender), var(--blush));
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .mood-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(232, 224, 240, 0.4);
+    }
+
+    .mood-button .mood-emoji {
+      font-size: 1.5rem;
+      transition: transform 0.5s ease;
+    }
+
+    .mood-button:hover .mood-emoji {
+      transform: rotate(360deg);
+    }
+
+    .mood-message {
+      margin-top: 15px;
+      padding: 15px 20px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 15px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.3s ease;
+    }
+
+    .mood-message.show {
+      max-height: 120px;
+      padding: 15px 20px;
+    }
+
+    /* 小彩蛋 - 点击标题 */
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      font-size: 1.5rem;
+      animation: sparkle-fade 1s ease forwards;
+      z-index: 100;
+    }
+
+    @keyframes sparkle-fade {
+      0% { opacity: 1; transform: scale(0) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+      100% { opacity: 0; transform: scale(0.8) rotate(360deg) translateY(-50px); }
+    }
+
+    /* 底部装饰 */
+    .page-footer {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 30px;
+      position: relative;
+    }
+
+    .page-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--soft-pink), transparent);
+    }
+
+    .footer-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .footer-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.5;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .footer-dots span:hover {
+      opacity: 1;
+      transform: scale(1.5);
+    }
+
+    .page-footer p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      letter-spacing: 2px;
+      font-style: italic;
+    }
+
+    /* 侧边装饰条纹 */
+    .side-decoration {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 6px;
+      height: 100%;
+      background: repeating-linear-gradient(
+        180deg,
+        var(--soft-pink) 0px,
+        var(--soft-pink) 30px,
+        var(--sage) 30px,
+        var(--sage) 60px,
+        var(--lavender) 60px,
+        var(--lavender) 90px,
+        var(--peach) 90px,
+        var(--peach) 120px,
+        var(--mint) 120px,
+        var(--mint) 150px
+      );
+      opacity: 0.5;
+      z-index: 2;
+    }
+
+    /* 角落装饰 */
+    .corner-deco {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.3;
+    }
+
+    .corner-deco.top-left {
+      top: 20px;
+      left: 20px;
+      background: radial-gradient(circle, var(--soft-pink) 2px, transparent 2px);
+      background-size: 15px 15px;
+    }
+
+    .corner-deco.bottom-right {
+      bottom: 20px;
+      right: 20px;
+      background: radial-gradient(circle, var(--sage) 2px, transparent 2px);
+      background-size: 15px 15px;
+    }
+
+    /* 回到顶部按钮 */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--soft-pink), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 10;
+      box-shadow: 0 5px 20px rgba(212, 165, 165, 0.3);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px) scale(1.1);
+    }
+
+    .back-to-top span {
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- 侧边条纹装饰 -->
+  <div class="side-decoration"></div>
+  
+  <!-- 角落波点装饰 -->
+  <div class="corner-deco top-left"></div>
+  <div class="corner-deco bottom-right"></div>
+
+  <!-- 回到顶部 -->
+  <div class="back-to-top" id="backToTop">
+    <span>↑</span>
+  </div>
+
+  <div class="page-wrapper">
+    <!-- 顶部波点 -->
+    <div class="header-dots">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- 主标题 -->
+    <header class="main-title">
+      <h1 id="mainTitle">下个礼拜你有空吗</h1>
+      <p class="subtitle">— 生活记录 · 吃饭攀岩喝咖啡 —</p>
+    </header>
+
+    <!-- 提示框 -->
+    <div class="hint-box" id="hintBox">
+      💡 朝阳女子胡闹厨房中。！
+      <div class="extra-hint">点击标题有惊喜 ~</div>
+    </div>
+
+    <!-- 0817-0823 -->
+    <section class="week-section" data-week="1">
+      <div class="week-header">
+        <span class="week-badge">0817 - 0823</span>
+        <div class="week-divider"></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-content">
+        <p>🧗 攀岩难度缓缓进步中 <strong>5.9 → 5.10a</strong>；v2大失败</p>
+        
+        <!-- 攀岩进度条 -->
+        <div class="climbing-progress">
+          <h4>📈 攀岩等级进度</h4>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 65%;"></div>
+          </div>
+          <div class="progress-labels">
+            <span>入门 5.6</span>
+            <span>当前 5.10a</span>
+            <span>目标 5.11</span>
+          </div>
+          <div class="climbing-badges">
+            <span class="climbing-badge completed">✓ 5.9 蒂凡尼蓝线</span>
+            <span class="climbing-badge current">★ 5.10a 挑战中</span>
+            <span class="climbing-badge locked">🔒 5.10b 未解锁</span>
+            <span class="climbing-badge locked">🔒 5.11 梦想</span>
+          </div>
+        </div>
+        
+        <div class="menu-section">
+          <div class="menu-title">本周菜单 · 点击查看美食</div>
+          <div class="menu-grid">
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍜 小象火鸡面</div>
+                  <div class="food-desc">还不错，粗面条很Q弹</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🍜</div>
+                  <div class="food-tip">三养奶油味才是终极选择！</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🥩 盐葱牛肉</div>
+                  <div class="food-desc">盒马买一送一的牛排</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🥩</div>
+                  <div class="food-tip">清库存也能很幸福</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🎃 南瓜焖饭</div>
+                  <div class="food-desc">贝贝南瓜怎么做都好吃</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🎃</div>
+                  <div class="food-tip">歌颂贝贝南瓜！FOREVER</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍦 薄巧冰淇淋</div>
+                  <div class="food-desc">960g一大桶</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🍦</div>
+                  <div class="food-tip">谁幸福了！我幸福了！</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="coffee-section">
+          <h4>☕ 南锣鼓巷咖啡日记</h4>
+          <div class="coffee-item" onclick="toggleCoffee(this)">「露华行深」— 很萌，小羊抹茶好喝</div>
+          <div class="coffee-detail">🐑 店里有一只小羊摆件，超级萌！抹茶饮品很推荐，味道刚好不苦不腻。</div>
+          <div class="coffee-item" onclick="toggleCoffee(this)">「静水 stillwater」— 一般</div>
+          <div class="coffee-detail">😶 对美式无感，店里全是淡人vlog博主在自习，气氛有点过于安静了…</div>
+          <div class="coffee-item" onclick="toggleCoffee(this)">「窄门」— 其实是香水店！</div>
+          <div class="coffee-detail">🌹 紫苏玫瑰和森林苔藓后调巨好闻！前调酒精味重，但散掉之后绝美。</div>
+        </div>
+
+        <!-- 心情按钮 -->
+        <div class="mood-section">
+          <button class="mood-button" onclick="changeMood(this)">
+            <span class="mood-emoji">🌸</span>
+            <span>查看今日心情</span>
+          </button>
+          <div class="mood-message" id="moodMsg">又是攀岩进步的一天！5.10a 我来了 💪</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 0810-0816 -->
+    <section class="week-section" data-week="2">
+      <div class="week-header">
+        <span class="week-badge">0810 - 0816</span>
+        <div class="week-divider"></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-content">
+        <p>🧗 本周（准确来说是上周五）开始攀岩了，难度挑战5.9蒂凡尼蓝线失败，等待再战</p>
+        <p>🎾 为何我网球反手比正手打得烂</p>
+        
+        <!-- 攀岩进度条 -->
+        <div class="climbing-progress">
+          <h4>📈 攀岩等级进度</h4>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 35%;"></div>
+          </div>
+          <div class="progress-labels">
+            <span>入门 5.6</span>
+            <span>目标 5.9</span>
+            <span>进阶 5.11</span>
+          </div>
+          <div class="climbing-badges">
+            <span class="climbing-badge current">★ 5.9 蒂凡尼蓝线 - 挑战中</span>
+            <span class="climbing-badge locked">🔒 5.10 未解锁</span>
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-title">本周菜单 · 点击查看美食</div>
+          <div class="menu-grid">
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍛 辣咖喱炖牛腩</div>
+                  <div class="food-desc">下次要多放点贝贝南瓜</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🍛</div>
+                  <div class="food-tip">配上南瓜会更香甜！</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍲 罗杰炒年糕</div>
+                  <div class="food-desc">故乡超市泡菜+年糕条+韩式辣酱</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🧀</div>
+                  <div class="food-tip">自己做的比饭店好吃！</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card full-width" onclick="flipCard(this)" style="grid-column: span 2;">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍜 寿喜锅乌冬面</div>
+                  <div class="food-desc">蔬菜乱炖，想吃啥都能往里面加</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🍜</div>
+                  <div class="food-tip">乱炖才是寿喜锅的灵魂！</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="coffee-section">
+          <h4>🥖 面包店推荐</h4>
+          <div class="coffee-item" onclick="toggleCoffee(this)">
+            <strong>贴贴 tietie</strong> — 望京站附近
+          </div>
+          <div class="coffee-detail">🎠 门口有两只木马！苹果派、番茄猪肉脯吐司、飞鱼籽米法棍都超好吃~</div>
+          <div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-light); padding-left: 20px;">
+            ※ 希腊酸奶：代替奶油/牛奶，效果非常好
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 0803-0809 -->
+    <section class="week-section" data-week="3">
+      <div class="week-header">
+        <span class="week-badge">0803 - 0809</span>
+        <div class="week-divider"></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-content">
+        <p>🍝 周末去吃了dumo，慢炖牛肋宽意面很难吃，和我做的味道一模一样（我做的也难吃）；三明治还不错，有很多我爱的溏心蛋</p>
+        
+        <div class="menu-section">
+          <div class="menu-title">本周菜单</div>
+          <div class="menu-grid">
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🥘 卤牛腱</div>
+                  <div class="food-desc">卤汤泡方便面无敌</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🍜</div>
+                  <div class="food-tip">吃完了所以🈚️图片，但味道绝赞！</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 美食评论卡片 -->
+        <div class="coffee-section">
+          <h4>🍽️ 餐厅探店</h4>
+          <div class="coffee-item" onclick="toggleCoffee(this)">
+            <strong>dumo</strong> — 慢炖牛肋宽意面
+          </div>
+          <div class="coffee-detail">😅 很难吃，跟我自己做的味道一模一样（我做的也难吃）</div>
+          <div class="coffee-item" onclick="toggleCoffee(this)">
+            <strong>dumo</strong> — 三明治
+          </div>
+          <div class="coffee-detail">😊 还不错，有很多爱的溏心蛋！这个推荐</div>
+        </div>
+
+        <!-- 心情按钮 -->
+        <div class="mood-section">
+          <button class="mood-button" onclick="changeMood(this)">
+            <span class="mood-emoji">🍳</span>
+            <span>查看今日心情</span>
+          </button>
+          <div class="mood-message">第一次攀岩挑战5.9蓝线，失败了但不气馁！🧗‍♀️</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="page-footer">
+      <div class="footer-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <p>愿你每天都能好好吃饭 · 好好生活 ♡</p>
+    </footer>
+  </div>
+
+  <script>
+    // 卡片翻转
+    function flipCard(card) {
+      card.classList.toggle('flipped');
+    }
+
+    // 咖啡/店铺详情展开
+    function toggleCoffee(item) {
+      item.classList.toggle('expanded');
+    }
+
+    // 周区块折叠
+    document.querySelectorAll('.week-header').forEach(header => {
+      header.addEventListener('click', () => {
+        header.parentElement.classList.toggle('collapsed');
+      });
+    });
+
+    // 心情切换
+    const moods = [
+      { emoji: '🌸', text: '又是攀岩进步的一天！5.10a 我来了 💪' },
+      { emoji: '🍳', text: '第一次攀岩挑战5.9蓝线，失败了但不气馁！🧗‍♀️' },
+      { emoji: '🎃', text: '贝贝南瓜是世界上最伟大的食物！🎃' },
+      { emoji: '☕', text: '想喝小羊抹茶 🐑' },
+      { emoji: '🧗', text: '今天的我比昨天更强！' },
+      { emoji: '🍦', text: '960g薄巧冰淇淋下肚，我是世界上最幸福的人' },
+      { emoji: '🍜', text: '卤汤泡方便面是人间至味' }
+    ];
+
+    function changeMood(btn) {
+      const msg = btn.nextElementSibling;
+      const randomMood = moods[Math.floor(Math.random() * moods.length)];
+      btn.querySelector('.mood-emoji').textContent = randomMood.emoji;
+      msg.textContent = randomMood.text;
+      msg.classList.add('show');
+      
+      // 隐藏后重新显示动画
+      btn.querySelector('.mood-emoji').style.animation = 'none';
+      setTimeout(() => {
+        btn.querySelector('.mood-emoji').style.animation = '';
+      }, 10);
+    }
+
+    // 提示框展开
+    const hintBox = document.getElementById('hintBox');
+    hintBox.addEventListener('click', () => {
+      hintBox.classList.toggle('expanded');
+    });
+
+    // 标题点击撒花效果
+    const mainTitle = document.getElementById('mainTitle');
+    const sparkles = ['✨', '🌸', '⭐', '💫', '🌟', '💖'];
+
+    mainTitle.addEventListener('click', (e) => {
+      const rect = mainTitle.getBoundingClientRect();
+      for (let i = 0; i < 8; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+        sparkle.style.left = (e.clientX + (Math.random() - 0.5) * 100) + 'px';
+        sparkle.style.top = (e.clientY + (Math.random() - 0.5) * 50) + 'px';
+        document.body.appendChild(sparkle);
+        
+        setTimeout(() => sparkle.remove(), 1000);
+      }
+    });
+
+    // 回到顶部
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 咖啡条目 hover 效果增强
+    document.querySelectorAll('.coffee-item').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        item.style.color = 'var(--accent)';
+      });
+      item.addEventListener('mouseleave', () => {
+        if (!item.classList.contains('expanded')) {
+          item.style.color = '';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
