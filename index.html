@@ -892,6 +892,110 @@
       <div class="extra-hint">点击标题有惊喜 ~</div>
     </div>
 
+    <!-- 0824-0830 -->
+    <section class="week-section" data-week="0">
+      <div class="week-header">
+        <span class="week-badge">0824 - 0830</span>
+        <div class="week-divider"></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-content">
+        <p>🧗 V2挑战成功 🥳，5.10a依旧失败</p>
+        <p>😴 累得倒头就睡，睡眠质量首次获得100分</p>
+        
+        <!-- 攀岩进度条 -->
+        <div class="climbing-progress">
+          <h4>📈 攀岩等级进度</h4>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 70%;"></div>
+          </div>
+          <div class="progress-labels">
+            <span>入门 5.6</span>
+            <span>当前 V2</span>
+            <span>目标 V3</span>
+          </div>
+          <div class="climbing-badges">
+            <span class="climbing-badge completed">✓ V2 挑战成功！</span>
+            <span class="climbing-badge current">★ 5.10a 继续挑战</span>
+            <span class="climbing-badge locked">🔒 V3 未解锁</span>
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-title">本周菜单 · 点击查看美食</div>
+          <div class="menu-grid">
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍅 番茄牛肉</div>
+                  <div class="food-desc">吃完粉灯以后念念不忘</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🍅</div>
+                  <div class="food-tip">小象超市的番茄不太行…</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍝 炒拉条子</div>
+                  <div class="food-desc">意面版本</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🍝</div>
+                  <div class="food-tip">天山雪莲辣皮子最夯！</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🥗 拌菠菜</div>
+                  <div class="food-desc">再不吃要坏了</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🥗</div>
+                  <div class="food-tip">清冰箱行动</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍰 杀糕杀糕</div>
+                  <div class="food-desc">大功臣</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🍰</div>
+                  <div class="food-tip">杀糕也是好吃的糕</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="coffee-section">
+          <h4>🧗 望京岩馆体验</h4>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>青藤</strong></div>
+          <div class="coffee-detail">馆小，抱石区围观群众多，自己的小圈子难融入；难度线体验更好，有概率获得热心教练指导</div>
+        </div>
+
+        <!-- 心情按钮 -->
+        <div class="mood-section">
+          <button class="mood-button" onclick="changeMood(this)">
+            <span class="mood-emoji">🎉</span>
+            <span>查看今日心情</span>
+          </button>
+          <div class="mood-message">V2成功！🥳</div>
+        </div>
+      </div>
+    </section>
+
     <!-- 0817-0823 -->
     <section class="week-section" data-week="1">
       <div class="week-header">
@@ -1188,7 +1292,7 @@
 
     // 攀岩徽章点击
     const encourageMessages = [
-      '💪 冲鸭！',
+      '💪 V2都过了V3还行！',
       '🧗 5.11在等你',
       '✅ 可以的可以的！',
       '❤️ 攀岩宝宝最棒！',
@@ -1272,7 +1376,9 @@
 
     // 心情切换
     const moods = [
-      { emoji: '🌸', text: '5.10a 我来了 💪' },
+      { emoji: '🎉', text: 'V2成功！🥳' },
+      { emoji: '🍅', text: '番茄牛肉念念不忘 🍅' },
+      { emoji: '🍝', text: '辣皮子永远最夯 🔥' },
       { emoji: '🍳', text: '5.9蓝线失败但不气馁 😅' },
       { emoji: '🎃', text: '贝贝南瓜yyds！❤️' },
       { emoji: '☕', text: '想喝小羊抹茶 🤤' },
