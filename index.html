@@ -628,7 +628,7 @@
     </header>
 
     <!-- 提示框 -->
-    <div class="hint-box" id="hintBox">💡 朝阳女子胡闹厨房中。</div>
+    <div class="hint-box" id="hintBox">💡 朝阳女子胡闹厨房中。<br><small style="opacity:0.6;font-size:0.75rem;">试试点击标题、V-hub、或者输入↑↑↓↓←→←→ba</small></div>
 
     <!-- 0831-0906 -->
     <section class="week-section" data-week="-1">
@@ -1049,6 +1049,67 @@
     });
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Konami代码彩蛋 ↑↑↓↓←→←→ba
+    const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let konamiIndex = 0;
+    const konamiEmojis = ['🎉','🎊','✨','🌟','💫','🎆','🎇','🍾','🥂','💖','🌸','🦋'];
+    document.addEventListener('keydown', (e) => {
+      if (e.key === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          // 全屏撒花！
+          for (let i = 0; i < 60; i++) {
+            setTimeout(() => {
+              const fw = document.createElement('div');
+              fw.textContent = konamiEmojis[Math.floor(Math.random() * konamiEmojis.length)];
+              fw.style.cssText = `position:fixed;pointer-events:none;font-size:${1.5+Math.random()*2}rem;left:${Math.random()*100}%;top:${Math.random()*100}%;animation:sparkle-fade 1.5s ease forwards;z-index:300;`;
+              document.body.appendChild(fw);
+              setTimeout(() => fw.remove(), 1500);
+            }, i * 50);
+          }
+          const toast = document.getElementById('toast');
+          toast.textContent = '🎊 隐藏彩蛋get！你发现了秘密代码！';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+          konamiIndex = 0;
+        }
+      } else {
+        konamiIndex = 0;
+      }
+    });
+
+    // V-hub 秘密点击
+    document.querySelectorAll('p').forEach(p => {
+      if (p.textContent.includes('V-hub')) {
+        p.style.cursor = 'pointer';
+        p.style.transition = 'all 0.3s ease';
+        p.addEventListener('click', () => {
+          p.style.background = 'linear-gradient(135deg, #fadcd2, #f5d5d5)';
+          p.style.padding = '12px 16px';
+          p.style.borderRadius = '12px';
+          const toast = document.getElementById('toast');
+          toast.textContent = '🤫 听说V-hub有家店的蛋糕很不错…下次去看看？';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        });
+      }
+    });
+
+    // 副标题双击秘密
+    const subtitle = document.querySelector('.subtitle');
+    let subtitleClicks = 0;
+    subtitle.addEventListener('click', () => {
+      subtitleClicks++;
+      if (subtitleClicks >= 3) {
+        subtitle.style.animation = 'sway 0.5s ease infinite';
+        const toast = document.getElementById('toast');
+        toast.textContent = '🌙 晚安，攀岩宝宝～明天也要好好加油哦 💪';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+        setTimeout(() => { subtitle.style.animation = ''; subtitleClicks = 0; }, 3000);
+      }
     });
   </script>
 </body>
