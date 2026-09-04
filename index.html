@@ -179,12 +179,14 @@
     .hint-box .extra-hint {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.5s ease;
+      transition: max-height 0.5s ease, opacity 0.3s ease;
+      opacity: 0;
     }
 
     .hint-box.expanded .extra-hint {
       max-height: 50px;
       margin-top: 12px;
+      opacity: 1;
     }
 
     /* 时间区块 */
@@ -467,15 +469,19 @@
     }
 
     .coffee-detail {
-      max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease;
+      transition: opacity 0.4s ease, transform 0.4s ease;
       font-size: 0.85rem;
       color: var(--text-light);
       padding-left: 20px;
+      opacity: 0;
+      transform: translateY(-5px);
+      max-height: 0;
     }
 
     .coffee-item.expanded + .coffee-detail {
+      opacity: 1;
+      transform: translateY(0);
       max-height: 200px;
       margin-top: 8px;
     }
@@ -596,19 +602,21 @@
 
     .mood-message {
       margin-top: 15px;
-      padding: 0 20px;
+      padding: 15px 20px;
       background: rgba(255, 255, 255, 0.7);
       border-radius: 15px;
       font-size: 0.9rem;
       color: var(--text-light);
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease, padding 0.3s ease;
+      opacity: 0;
+      transform: translateY(-10px) scale(0.95);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
     }
 
     .mood-message.show {
-      max-height: 300px;
-      padding: 15px 20px;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
     }
 
     /* 小彩蛋 - 点击标题 */
