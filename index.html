@@ -588,6 +588,24 @@
       font-style: italic;
     }
 
+    .secret-hints {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      opacity: 0.15;
+      transition: opacity 0.3s ease;
+    }
+
+    .secret-hints:hover { opacity: 0.4; }
+
+    .secret-hints span {
+      font-size: 0.65rem;
+      color: var(--text-light);
+      letter-spacing: 1px;
+      user-select: none;
+    }
+
     /* === 页面加载动画 === */
     .page-wrapper { animation: fade-in-up 0.8s ease forwards; }
 
@@ -628,7 +646,7 @@
     </header>
 
     <!-- 提示框 -->
-    <div class="hint-box" id="hintBox">💡 朝阳女子胡闹厨房中。<br><small style="opacity:0.6;font-size:0.75rem;">试试点击标题、V-hub、或者输入↑↑↓↓←→←→ba</small></div>
+    <div class="hint-box" id="hintBox">💡 朝阳女子胡闹厨房中。</div>
 
     <!-- 0831-0906 -->
     <section class="week-section" data-week="-1">
@@ -977,6 +995,13 @@
     <footer class="page-footer">
       <div class="footer-deco">✿ ❀ ✿</div>
       <p>愿你每天都能好好吃饭 · 好好生活 ♡</p>
+      <div class="secret-hints">
+        <span>🌸</span>
+        <span>↑↑↓↓</span>
+        <span>🍝</span>
+        <span>x3</span>
+        <span>🤫</span>
+      </div>
     </footer>
   </div>
 
