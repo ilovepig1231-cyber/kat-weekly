@@ -7,16 +7,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --cream: #fdf8f3;
-      --blush: #f8e8e0;
-      --sage: #d4e4d1;
-      --lavender: #e8e0f0;
-      --peach: #fadcd2;
-      --soft-pink: #f5d5d5;
-      --mint: #e0f0e8;
-      --text-dark: #5a4a4a;
-      --text-light: #8b7e7e;
-      --accent: #d4a5a5;
+      --cream: #faf3e8;
+      --blush: #f5e0d0;
+      --sage: #d4a574;
+      --lavender: #e8c8a0;
+      --peach: #e8b890;
+      --soft-pink: #e09a5b;
+      --mint: #f0d8b8;
+      --text-dark: #5a4030;
+      --text-light: #8b7355;
+      --accent: #c45c3a;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -517,22 +517,25 @@
       100% { opacity: 0; transform: scale(0.6) rotate(360deg) translateY(-40px); }
     }
 
-    /* === 浮动emoji === */
+    /* === 飘落树叶 === */
     .floating-emoji {
       position: fixed;
       pointer-events: none;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       opacity: 0;
       z-index: 0;
-      animation: float-up 9s ease-in-out forwards;
+      animation: float-up 10s ease-in-out forwards;
     }
 
     @keyframes float-up {
-      0% { opacity: 0; transform: translateY(100vh) rotate(0deg) scale(0.5); }
-      15% { opacity: 0.5; }
-      85% { opacity: 0.25; }
-      100% { opacity: 0; transform: translateY(-80px) rotate(360deg) scale(1); }
+      0% { opacity: 0; transform: translateY(100vh) rotate(0deg) scale(0.6); }
+      10% { opacity: 0.4; }
+      50% { opacity: 0.3; }
+      90% { opacity: 0.15; }
+      100% { opacity: 0; transform: translateY(-100px) rotate(720deg) scale(1); }
     }
+
+    /* === 标题装饰 === */
 
     /* === 回到顶部 === */
     .back-to-top {
@@ -640,7 +643,7 @@
   <div class="page-wrapper">
     <!-- 标题 -->
     <header class="main-title">
-      <div class="title-deco-top">✿ ❀ ✿ ❀ ✿</div>
+      <div class="title-deco-top">🍂 🍁 🌰 🍄 🍂</div>
       <h1 id="mainTitle">下个礼拜你有空吗</h1>
       <p class="subtitle">— 生活记录 · 吃饭攀岩喝咖啡 —</p>
     </header>
@@ -1055,12 +1058,12 @@
 
     <!-- 底部 -->
     <footer class="page-footer">
-      <div class="footer-deco">✿ ❀ ✿</div>
+      <div class="footer-deco">🍂 🍁 🍂</div>
       <p>愿你每天都能好好吃饭 · 好好生活 ♡</p>
       <div class="secret-hints">
-        <span>🌸</span>
+        <span>🍂</span>
         <span>↑↑↓↓</span>
-        <span>🍝</span>
+        <span>🍗</span>
         <span>x3</span>
         <span>🤫</span>
       </div>
@@ -1077,7 +1080,7 @@
     function toggleCoffee(item) { item.classList.toggle('expanded'); }
 
     // 浮动emoji
-    const floatEmojis = ['🌸','✨','🍃','💫','🌿','⭐','🌺','💖','🌼','🦋'];
+    const floatEmojis = ['🍂','🍁','🌰','🍄','🍂','🍁','🌰','🍄','🍂','🍁'];
     setInterval(() => {
       const emoji = document.createElement('div');
       emoji.className = 'floating-emoji';
@@ -1097,7 +1100,7 @@
 
     // 标题撒花
     const mainTitle = document.getElementById('mainTitle');
-    const sparkles = ['✨','🌸','⭐','💫','🌟','💖','🌺'];
+    const sparkles = ['🍂','🍁','🌰','🍄','✨','💫','🍂','🍁'];
     mainTitle.addEventListener('click', (e) => {
       for (let i = 0; i < 8; i++) {
         const sparkle = document.createElement('div');
