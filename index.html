@@ -183,7 +183,26 @@
     .hint-box:hover::before { transform: translateX(100%); }
     .hint-box:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(212,165,165,0.25); }
 
-    /* === 时间区块 === */
+    /* === 时间区块 - 由夏转秋渐变 === */
+
+    /* 0803-0809 盛夏：粉绿清新 */
+    .week-section[data-week="3"] { --week-primary: #f5d5d5; --week-secondary: #d4e4d1; --week-accent: #d4a5a5; --week-text: #5a4a4a; --week-bg: rgba(253, 248, 243, 0.65); --week-blush: #f8e8e0; --week-peach: #fadcd2; }
+
+    /* 0810-0816 夏末：淡紫粉 */
+    .week-section[data-week="2"] { --week-primary: #e8e0f0; --week-secondary: #f0e0e8; --week-accent: #b890c0; --week-text: #5a4a5a; --week-bg: rgba(248, 245, 250, 0.65); --week-blush: #f0e0f0; --week-peach: #e8d0e0; }
+
+    /* 0817-0823 夏末：暖粉橙 */
+    .week-section[data-week="1"] { --week-primary: #f8d8c8; --week-secondary: #f5e0d0; --week-accent: #d49070; --week-text: #5a4a4a; --week-bg: rgba(250, 245, 240, 0.65); --week-blush: #f5d8c8; --week-peach: #f0c8b0; }
+
+    /* 0824-0830 初秋：橙黄 */
+    .week-section[data-week="0"] { --week-primary: #e8c8a0; --week-secondary: #f0d8b8; --week-accent: #c89060; --week-text: #5a4a3a; --week-bg: rgba(248, 242, 235, 0.65); --week-blush: #f0d8b8; --week-peach: #e8c898; }
+
+    /* 0831-0906 秋：橙红 */
+    .week-section[data-week="-1"] { --week-primary: #e0a880; --week-secondary: #f0c8a0; --week-accent: #c47040; --week-text: #5a4030; --week-bg: rgba(245, 238, 230, 0.65); --week-blush: #e8c898; --week-peach: #d8b888; }
+
+    /* 0907-0913 深秋：红棕 */
+    .week-section[data-week="-2"] { --week-primary: #d49070; --week-secondary: #e8b890; --week-accent: #b86030; --week-text: #4a3828; --week-bg: rgba(242, 235, 228, 0.65); --week-blush: #e0b888; --week-peach: #d0a878; }
+
     .week-section {
       margin: 45px 0;
       position: relative;
@@ -199,8 +218,8 @@
     }
 
     .week-badge {
-      background: linear-gradient(135deg, var(--sage), var(--mint));
-      color: var(--text-dark);
+      background: linear-gradient(135deg, var(--week-secondary), var(--week-primary));
+      color: var(--week-text);
       padding: 10px 24px;
       border-radius: 25px;
       font-size: 0.95rem;
@@ -208,7 +227,7 @@
       letter-spacing: 1px;
       white-space: nowrap;
       transition: all 0.3s ease;
-      box-shadow: 0 3px 10px rgba(212,228,209,0.3);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     }
 
     .week-badge:hover {
@@ -232,11 +251,11 @@
     .week-section.collapsed .toggle-icon { transform: rotate(-90deg); }
 
     .week-content {
-      background: rgba(255,255,255,0.65);
+      background: var(--week-bg);
       backdrop-filter: blur(10px);
       border-radius: 24px;
       padding: 28px;
-      border: 1px solid rgba(245,213,213,0.3);
+      border: 1px solid color-mix(in srgb, var(--week-accent) 20%, transparent);
       position: relative;
       overflow: hidden;
       transition: all 0.5s ease;
@@ -257,17 +276,17 @@
       top: 0; left: 0; right: 0;
       height: 5px;
       background: repeating-linear-gradient(90deg,
-        var(--soft-pink) 0px, var(--soft-pink) 18px,
-        var(--sage) 18px, var(--sage) 36px,
-        var(--lavender) 36px, var(--lavender) 54px,
-        var(--peach) 54px, var(--peach) 72px
+        var(--week-primary) 0px, var(--week-primary) 18px,
+        var(--week-secondary) 18px, var(--week-secondary) 36px,
+        var(--week-accent) 36px, var(--week-accent) 54px,
+        var(--week-primary) 54px, var(--week-primary) 72px
       );
-      opacity: 0.5;
+      opacity: 0.4;
     }
 
     .week-content p {
       margin: 10px 0;
-      color: var(--text-dark);
+      color: var(--week-text);
       font-size: 0.98rem;
     }
 
@@ -324,20 +343,20 @@
 
     .menu-card-front {
       background: white;
-      border: 1.5px solid rgba(212,165,165,0.12);
-      box-shadow: 0 4px 15px rgba(212,165,165,0.08);
+      border: 1.5px solid color-mix(in srgb, var(--week-accent) 12%, transparent);
+      box-shadow: 0 4px 15px color-mix(in srgb, var(--week-accent) 8%, transparent);
       transition: all 0.3s ease;
     }
 
     .menu-card:hover .menu-card-front {
       transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(212,165,165,0.15);
+      box-shadow: 0 8px 25px color-mix(in srgb, var(--week-accent) 15%, transparent);
     }
 
     .menu-card-back {
-      background: linear-gradient(145deg, var(--blush), var(--peach));
+      background: linear-gradient(145deg, var(--week-blush, var(--blush)), var(--week-peach, var(--peach)));
       transform: rotateY(180deg);
-      border: 1.5px solid rgba(212,165,165,0.18);
+      border: 1.5px solid color-mix(in srgb, var(--week-accent) 18%, transparent);
     }
 
     .menu-card-back .food-emoji {
@@ -377,15 +396,15 @@
 
     /* === 咖啡/岩馆区块 === */
     .coffee-section {
-      background: linear-gradient(135deg, rgba(224,240,232,0.4), rgba(232,224,240,0.4));
+      background: linear-gradient(135deg, color-mix(in srgb, var(--week-secondary) 40%, transparent), color-mix(in srgb, var(--week-primary) 30%, transparent));
       border-radius: 18px;
       padding: 20px;
       margin-top: 18px;
-      border: 1px solid rgba(212,228,209,0.35);
+      border: 1px solid color-mix(in srgb, var(--week-accent) 25%, transparent);
     }
 
     .coffee-section h4 {
-      color: var(--text-dark);
+      color: var(--week-text);
       font-size: 0.92rem;
       margin-bottom: 10px;
       letter-spacing: 1px;
@@ -396,15 +415,15 @@
       padding-left: 20px;
       position: relative;
       font-size: 0.92rem;
-      color: var(--text-dark);
+      color: var(--week-text);
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
-    .coffee-item:hover { transform: translateX(5px); color: var(--accent); }
+    .coffee-item:hover { transform: translateX(5px); color: var(--week-accent); }
 
     .coffee-item::before {
-      content: '☕';
+      content: '🍂';
       position: absolute;
       left: 0; top: 2px;
       font-size: 0.75rem;
@@ -414,7 +433,7 @@
       overflow: hidden;
       transition: all 0.4s ease;
       font-size: 0.82rem;
-      color: var(--text-light);
+      color: var(--week-text);
       padding-left: 20px;
       max-height: 0;
       opacity: 0;
@@ -430,20 +449,20 @@
     .climbing-progress {
       margin: 18px 0;
       padding: 18px;
-      background: rgba(255,255,255,0.55);
+      background: color-mix(in srgb, var(--week-bg) 70%, white);
       border-radius: 16px;
-      border: 1px solid rgba(212,228,209,0.25);
+      border: 1px solid color-mix(in srgb, var(--week-accent) 18%, transparent);
     }
 
     .climbing-progress h4 {
       font-size: 0.92rem;
       margin-bottom: 14px;
-      color: var(--text-dark);
+      color: var(--week-text);
     }
 
     .progress-bar {
       height: 10px;
-      background: rgba(212,228,209,0.25);
+      background: color-mix(in srgb, var(--week-secondary) 25%, rgba(0,0,0,0.05));
       border-radius: 5px;
       overflow: hidden;
       cursor: pointer;
@@ -451,7 +470,7 @@
 
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--sage), var(--mint));
+      background: linear-gradient(90deg, var(--week-secondary), var(--week-primary));
       border-radius: 5px;
       transition: width 0.5s ease;
     }
@@ -461,7 +480,7 @@
       justify-content: space-between;
       margin-top: 8px;
       font-size: 0.78rem;
-      color: var(--text-light);
+      color: var(--week-text);
     }
 
     .climbing-badges {
@@ -480,13 +499,13 @@
     }
 
     .climbing-badge.completed {
-      background: linear-gradient(135deg, var(--sage), var(--mint));
-      color: var(--text-dark);
+      background: linear-gradient(135deg, var(--week-secondary), var(--week-primary));
+      color: var(--week-text);
     }
 
     .climbing-badge.current {
       background: linear-gradient(135deg, var(--peach), var(--soft-pink));
-      color: var(--text-dark);
+      color: var(--week-text);
       animation: pulse 2s ease-in-out infinite;
     }
 
