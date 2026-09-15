@@ -203,6 +203,9 @@
     /* 0907-0913 初秋：金橙 */
     .week-section[data-week="-2"] { --week-primary: #e8c890; --week-secondary: #f0d8a0; --week-accent: #c89040; --week-text: #5a4830; --week-bg: rgba(250, 245, 235, 0.7); --week-blush: #f0d8a0; --week-peach: #e8c888; }
 
+    /* 0914-0920 初秋：琥珀 */
+    .week-section[data-week="-3"] { --week-primary: #e0c888; --week-secondary: #ecd898; --week-accent: #c08838; --week-text: #5a4830; --week-bg: rgba(248, 243, 232, 0.7); --week-blush: #ecd8a0; --week-peach: #e0c888; }
+
     .week-section {
       margin: 45px 0;
       position: relative;
@@ -669,6 +672,86 @@
 
     <!-- 提示框 -->
     <div class="hint-box" id="hintBox">💡 朝阳女子胡闹厨房中。</div>
+
+    <!-- 0914-0920 -->
+    <section class="week-section" data-week="-3">
+      <div class="week-header">
+        <span class="week-badge">0914 - 0920</span>
+        <div class="week-divider"></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-content">
+        <p>🍂 秋天能不能不要离开北京！！！</p>
+        <p>🧗 本周去了col和mellow（怎么又是mellow）</p>
+        <div class="climbing-progress">
+          <h4>📈 攀岩进度</h4>
+          <div class="progress-bar"><div class="progress-fill" style="width: 78%;"></div></div>
+          <div class="progress-labels"><span>V2已过</span><span>col成功</span><span>目标 V3</span></div>
+          <div class="climbing-badges">
+            <span class="climbing-badge completed">✓ col: 5条V2成功！</span>
+            <span class="climbing-badge current">★ mellow: V3挑战中</span>
+            <span class="climbing-badge completed">★ 5.10a 日过一条</span>
+          </div>
+        </div>
+        <div class="menu-section">
+          <div class="menu-title">本周菜单 · 点击查看美食</div>
+          <div class="menu-grid">
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍖 辣炖牛尾+排骨</div>
+                  <div class="food-desc">为何牛尾没有炖出胶质</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🍖</div>
+                  <div class="food-tip">压力锅30分钟还不够？</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍣 盒马三文鱼</div>
+                  <div class="food-desc">周六超级折扣买一送一</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🐟</div>
+                  <div class="food-tip">阿姨特别热情跟我聊好久</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍞 奇多市面包节</div>
+                  <div class="food-desc">体验一般但面包无辜</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🥖</div>
+                  <div class="food-tip">闹now酵吐封神！</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="coffee-section">
+          <h4>🍞 面包节战利品</h4>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>闹now</strong> — 酵吐吐司</div>
+          <div class="coffee-detail">试吃后立刻购入，太好吃了！</div>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>久日</strong> — 苔菜小方</div>
+          <div class="coffee-detail">我爱苔菜，买了两个</div>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>李行行</strong> — 斑斓红豆恰巴塔</div>
+          <div class="coffee-detail">应该没有难吃的可能</div>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>婧婧</strong> — 待对比</div>
+          <div class="coffee-detail">买了但还没吃，到时候对比一下</div>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>苹果康普茶</strong> — 一般</div>
+          <div class="coffee-detail">太一般了，好想大喊还钱</div>
+        </div>
+      </div>
+    </section>
 
     <!-- 0907-0913 -->
     <section class="week-section" data-week="-2">
