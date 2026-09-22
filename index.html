@@ -206,6 +206,9 @@
     /* 0914-0920 初秋：琥珀 */
     .week-section[data-week="-3"] { --week-primary: #e0c888; --week-secondary: #ecd898; --week-accent: #c08838; --week-text: #5a4830; --week-bg: rgba(248, 243, 232, 0.7); --week-blush: #ecd8a0; --week-peach: #e0c888; }
 
+    /* 0921-0927 初秋：蜜糖 */
+    .week-section[data-week="-4"] { --week-primary: #ddc888; --week-secondary: #e8d898; --week-accent: #b88838; --week-text: #5a4830; --week-bg: rgba(246, 242, 230, 0.7); --week-blush: #e8d8a0; --week-peach: #ddc888; }
+
     .week-section {
       margin: 45px 0;
       position: relative;
@@ -672,6 +675,71 @@
 
     <!-- 提示框 -->
     <div class="hint-box" id="hintBox">💡 朝阳女子胡闹厨房中。</div>
+
+    <!-- 0921-0927 -->
+    <section class="week-section" data-week="-4">
+      <div class="week-header">
+        <span class="week-badge">0921 - 0927</span>
+        <div class="week-divider"></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-content">
+        <p>🚬 这周真的休息了吗</p>
+        <div class="menu-section">
+          <div class="menu-title">本周菜单 · 点击查看美食</div>
+          <div class="menu-grid">
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍚 海南鸡饭</div>
+                  <div class="food-desc">抗炎版本：大量姜黄+鱼油</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🍚</div>
+                  <div class="food-tip">VBVC吃起来！</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍅 番茄筋头巴脑</div>
+                  <div class="food-desc">炖来炖去还是番茄味好吃</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🍅</div>
+                  <div class="food-tip">永远的神！</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍗 盒马两件6折</div>
+                  <div class="food-desc">窑鸡和烤鸡好吃</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">😤</div>
+                  <div class="food-tip">还我肋排！kat怒了</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="coffee-section">
+          <h4>🍽️ 外食记录</h4>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>挖味儿wavi</strong> — 咖啡特调</div>
+          <div class="coffee-detail">比静水好喝（果味更重），但更喜欢各式各样的拿铁</div>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>格鲁秀色</strong> — 好吃的餐厅</div>
+          <div class="coffee-detail">没记住叽里咕噜的菜名，但是好吃！</div>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>宝丽来拍照</strong> — 北京拍照馆</div>
+          <div class="coffee-detail">配置好差，南京所有馆几乎都拍过了…微微怀念开满桂花的城市 😭</div>
+        </div>
+      </div>
+    </section>
 
     <!-- 0914-0920 -->
     <section class="week-section" data-week="-3">
