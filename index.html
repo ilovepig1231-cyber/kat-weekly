@@ -209,6 +209,9 @@
     /* 0921-0927 初秋：蜜糖 */
     .week-section[data-week="-4"] { --week-primary: #ddc888; --week-secondary: #e8d898; --week-accent: #b88838; --week-text: #5a4830; --week-bg: rgba(246, 242, 230, 0.7); --week-blush: #e8d8a0; --week-peach: #ddc888; }
 
+    /* 0928-1012 深秋：深琥珀 */
+    .week-section[data-week="-5"] { --week-primary: #d0a860; --week-secondary: #e0c080; --week-accent: #a07030; --week-text: #4a3820; --week-bg: rgba(245, 238, 225, 0.75); --week-blush: #e0c888; --week-peach: #d8b878; }
+
     .week-section {
       margin: 45px 0;
       position: relative;
@@ -675,6 +678,81 @@
 
     <!-- 提示框 -->
     <div class="hint-box" id="hintBox">💡 朝阳女子胡闹厨房中。</div>
+
+    <!-- 0928-1012 -->
+    <section class="week-section" data-week="-5">
+      <div class="week-header">
+        <span class="week-badge">0928 - 1012</span>
+        <div class="week-divider"></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-content">
+        <p>🚬 再次发出感慨这周真的休息了吗</p>
+        <p>严重假期戒断中..虽然13天我并没有离开北京一天😭 很怀念突然想去798就骑车耍起的下午55</p>
+        <p>🏓 打匹克球了 · 北海公园好美好美 · 审美积累ing</p>
+        <div class="menu-section">
+          <div class="menu-title">本周菜单 · 点击查看美食</div>
+          <div class="menu-grid">
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">💊 大量补剂</div>
+                  <div class="food-desc">鱼油+辅酶q10+补铁剂+维b</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">💊</div>
+                  <div class="food-tip">为了发量&amp;心情豁出去了！</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍅 番茄花椒鸡</div>
+                  <div class="food-desc">加了一吨青花椒</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🌶️</div>
+                  <div class="food-tip">下次鸡肉再炒干一点</div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-card" onclick="flipCard(this)">
+              <div class="menu-card-inner">
+                <div class="menu-card-front">
+                  <div class="food-name">🍜 酸菜炒面</div>
+                  <div class="food-desc">盒马炒酸菜</div>
+                  <div class="click-hint">点击翻转 →</div>
+                </div>
+                <div class="menu-card-back">
+                  <div class="food-emoji">🥫</div>
+                  <div class="food-tip">顶级开胃之物</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="coffee-section">
+          <h4>☕ 咖啡店探店</h4>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>darling u</strong> — 茉莉拿铁</div>
+          <div class="coffee-detail">超级超级超级超级好喝！！</div>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>北欧咖啡</strong> — 来去夏威夷</div>
+          <div class="coffee-detail">芭乐菠萝味特调，很一般！不会再喝（洄游人太多没喝上</div>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>dayucoffee</strong> — 安眠</div>
+          <div class="coffee-detail">葡萄味特调，很香很香，咖啡师姐姐很可爱</div>
+        </div>
+        <div class="coffee-section">
+          <h4>🍽️ 外食记录</h4>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>庆春朴门</strong> — 纯素宴</div>
+          <div class="coffee-detail">份量很小的纯素宴，很好吃</div>
+          <div class="coffee-item" onclick="toggleCoffee(this)"><strong>城小春</strong> — 云南菜</div>
+          <div class="coffee-detail">没有油焖鸡的云南菜，很正宗很好吃！（但是很咸</div>
+        </div>
+        <p>💫 一想到要上班了就焦虑狠狠去打了三个耳洞，左三右二立刻开始招财 — flat比耳骨钉难养呀</p>
+      </div>
+    </section>
 
     <!-- 0921-0927 -->
     <section class="week-section" data-week="-4">
